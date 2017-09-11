@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Marionette ToDo</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+		<link rel="stylesheet" href="public/style.css">
+
+  </head>
+  <body>
+    <header class="bs-header">
+      <div class="container">
+        <h1>ToDo</h1>
+      </div>
+    </header>
+    <section id="todoapp">
+        <header id="header"></header>
+        <section id="main"></section>
+        <footer id="footer"></footer>
+    </section>
+    <script type="text/html" id="template-footer">
+        <span id="todo-count">
+            <strong><%= activeCount %></strong> <%= activeCountLabel() %>
+        </span>
+        <ul id="filters">
+            <li class="all">
+                <a href="#/">All</a>
+            </li>
+            <li class="active">
+                <a href="#/active">Active</a>
+            </li>
+            <li class="completed">
+                <a href="#/completed">Completed</a>
+            </li>
+        </ul>
+        <button id="clear-completed" <% if (!completedCount) { %>class="hidden"<% } %>>Clear completed</button>
+    </script>
+
+    <!-- Templates -->
+    <script type="text/html" id="template-header">
+        <input id="new-todo" placeholder="Add a to-do.." autofocus>
+    </script>
+
+    <script type="text/html" id="template-todoItemView">
+        <div class="view">
+            <input class="toggle" type="checkbox" <% if (completed) { %>checked<% } %>>
+            <label><%- title %></label>
+            <button class="destroy"></button>
+        </div>
+        <input class="edit" value="<%- title %>">
+    </script>
+    
+    <script type="text/html" id="template-todoListView">
+        <input id="toggle-all" type="checkbox">
+        <label for="toggle-all">Mark all as complete</label>
+        <ul></ul>
+    </script>
+    
+    <script src="public/bundle.js"></script>
+  </body>
+</html>
